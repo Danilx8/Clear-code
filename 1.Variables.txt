@@ -1,0 +1,35 @@
+Operation - inputOperation
+//результат ввода операции над двумя матрицами
+
+Result - resultMatrix
+//результирующая матрица
+
+Toggle - matrixDeterminantSign
+//знак детерминанта матрицы после её декомпозиции
+
+obj - comparedObject
+//объект, участвующий в сравнении с матрицей
+
+Element - inputElement
+//необработанный вводимый символ
+
+Character - inputCharacter
+//вводимый символ, конвертированный в тип char
+
+ReadyList - filesContainingKeywordsList
+//список файлов, содержащих указанные ключевые слова
+
+Extensions - extensionsList
+//список расширений
+
+Random - randomizer
+//объект, метод которого возвращает случайное значение
+
+ListerLambda - nodesList
+//делегат, получивший список всех узлов бинарного дерева с помощью лямбда-выражения
+
+MyDelegate - matrixConversionMethod
+//делегат, используемый в анонимном методе для получения матриц диагонального и ступенчатого вида
+
+AnotherMatrix - comparedMatrix
+//матрица, сравниваемая с текущей
