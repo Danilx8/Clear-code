@@ -1,0 +1,25 @@
+6.1 
+songObject - songJsonData
+newMatrix - multiplied(divided, inverted, cloned)Matrix
+content - inputTextWithErrors
+success - areSynchronized
+result - resultMessage
+
+6.2
+songsPool // при реализации паттерна пул объектов
+valuesHashTable // хэш-таблица определённых объектов
+cacheTemplate // шаблон набора данных, сохраняемого в кэше
+lambdaExpression // переменная, хранящая в себе лямбда-выражение, в виде, подходящем для построения АСТ-дерева
+
+
+6.3
+songIndex
+currentSongIndex
+tracklistSongs
+
+6.4 
+paused - isPaused
+src - elementSource
+permRow - permutationArrayRow
+b - permutationMatrix
+x - arrangedMatrix
