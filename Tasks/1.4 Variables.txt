@@ -1,0 +1,13 @@
+readyString - result
+mySign - numberSign
+stream - output // возвращаемое значение перегруженного оператора вывода значения
+in - input // возвращаемое значение перегруженного оператора ввода значения
+accumulatingVariable - currentNumber // переменная, хранящая вводимые значения для калькулятора
+ProblemSolver - CalculateSolution
+anotherMatrix - comparedMatrix
+newMatrix - resultMatrix
+readyList - fixedWordsList
+duration - songDurationsSeconds
+songObject - songFromPool // переменная, принимающая собранную песню из фабрики и помещающая её в пул объектов
+progress - progressPercent
+
