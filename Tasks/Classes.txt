@@ -1,0 +1,15 @@
+3.1
+Field -> GameField
+MetaData -> MediaAssets
+IndexationManager -> Indexator
+StringSearch -> WordsSearch
+Model -> Folder
+
+3.2
+FixDocument && Correct -> CorrectDocument && Correct
+CheckStates && GetFiles -> GetStates && GetFiles
+SetPosition && Reposition -> SetPosition && ChangePosition
+ConvertToText && ToString -> ToText && ToString
+CreatePicture && ToString -> ToPicture && ToString
+PerformIndexation && InitiateEdit -> Indexate && Edit
+KeyWordsFileSearcher && Indexate -> KeyWordsSearch && Indexate
