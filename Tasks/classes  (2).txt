@@ -1,0 +1,12 @@
+menu -> displayMenu
+title -> displayTitle
+openLeaderboard -> openLeaderboardFile
+createLeaderboard -> createLeaderboardFile
+gameLoop -> runGame
+spawnBlock -> displayBlockNewPosition
+display -> updateView
+saveResults -> addResultToLeaderboard
+gameOver -> displayLosersScreen
+fileParsing -> parseLeaderboardFile
+leaderboardBuilder -> buildLeaderboard
+snakeSpawn -> spawn (метод класса snake)
