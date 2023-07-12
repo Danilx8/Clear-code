@@ -1,0 +1,9 @@
+3.1
+new Purchases() -> Purchases.BasicCollection(), Purchases.WithRichInformation()...
+new Users() -> Users.BasicUser(), Users.WithPriveleges()
+new Products() -> Products.BasicProduct(), Products.WithSpecialities()
+
+3.2
+IView -> ViewImpl: View
+IStrategy -> PictureGenerator
+IService -> PurchaseService
