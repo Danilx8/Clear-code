@@ -23,3 +23,8 @@
 100 -> VALUES_HIGH_MARK
 -100 -> VALUES_LOW_MARK
 
+//Количество опций на выбор в главном мену
+9 -> CHOICES_AMOUNT
+
+//Количество товаров, выводимых на главном экране приложения доставки
+20 -> DISPLAYED_PRODUCTS_AMOUNT
