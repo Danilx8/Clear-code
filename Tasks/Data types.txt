@@ -1,0 +1,127 @@
+//исправил трёхэтажную условную конструкцию
+
+   if (!paused) {
+        if (playlist[currentSongIndex].video != undefined) {
+            if (!isPlaying) {
+		{...}
+            }
+        }
+    }
+
+->
+
+if (!paused && playlist[currentSongIndex].video != undefined && !isPlaying) {
+	{...}
+}
+
+
+//добавил проверку на безопасное деление
+
+const progress = (currentTime / duration) * 100
+
+->
+
+let progress = 0
+if (duration !== 0) progress = (currentTime / duration) * 100
+
+
+//использую intermidiate условную логику вместо тысячи строк
+let done = false
+if (currentSongIndex === songsAmount - 1) {
+	done = true
+}
+paused = false
+if (!playlist[currentSongIndex].isPlaying) {
+	paused = true
+}
+
+->
+
+done = currentSongIndex === songsAmount - 1
+paused = !playlist[currentSongIndex].isPlaying
+
+
+//привязал арифметические и логические символы к константам в приложении
+
+switch (operation) {
+        case '+':
+		{...}
+        case '-':
+		{...}
+        case '*':
+		{...}
+        case '/':
+		{...}          
+        case '<':
+		{...}
+        case '>':
+		{...}
+        case '=':
+		{...}
+
+-> 
+
+const char PLUS_SYMBOL = '+';
+const char MINUS_SYMBOL = '-';
+const char MULTIPLICATION_SYMBOL = '*';
+const char DIVISION_SYMBOL = '/';
+const char LESS_THAN_SYMBOL = '<';
+const char BIGGER_THAN_SYMBOL = '>';
+const char EQUALS_SYMBOL = '=';
+
+...
+
+
+//поместил название файла для сохранения таблицы лидеров в константу
+const std::string LEADERBOARD_FILE_NAME = "leaderboard.txt";
+
+
+//поместил ASCII-арты в отдельные константы
+const std::string LOADING_ARTWORK = "..."
+const std::string GAME_OVER_ARTWORK = "..."
+
+
+//поместил в константу символ, из которого строится игровой интерфейс игры
+const char BUILDING_SYMBOL = '@';
+
+
+//поместил в константу сивол, обозначающий конец ввода
+const char END_OF_INPUT_SYMBOL = '~';
+
+
+//для бэкенд-программы на Java создал два файла с первостепенными репликами для соответствующих локализаций: русской и английской
+"messages_en.properties":
+api.server.error=Internal server error
+api.user.tag.name=Users
+api.user.tag.description=User controller
+api.user.users.operation.summary=List of users
+api.user.users.api-responses.200.description=List displayed successfully
+api.user.create.operation.summary=Add user
+api.user.create.api-responses.200.description=User added successfully
+api.user.delete.operation.summary=Delete user
+...
+
+messages_ru_RU.properties	
+api.server.error=Внутренняя ошибка сервиса
+api.user.tag.name=Пользователи
+api.user.tag.description=Контроллер для работы с пользователями системы
+api.user.users.operation.summary=Получение списка пользователей системы
+api.user.users.api-responses.200.description=Список успешно отображен
+api.user.create.operation.summary=Добавление пользователя
+api.user.create.api-responses.200.description=Пользователь успешно добавлен
+api.user.delete.operation.summary=Удаление пользователя
+
+
+//поместил путь к файлу для подсчёта количества букв в отдельную константу
+const std::string COUNTED_FILE_PATH = "Cleopatra.txt";
+
+
+//в конвертере римских чисел в арабские добавил ограничение на длину в 1000 символов
+if (romanNumber.length >= 1000) {
+	std::cout << "Введено слишком большое римское число, введите число меньше\n";
+
+
+//в матричном калькуляторе добавил условие: если размер матрицы более 300, то такие числовые операции, как вычисление определителя может привести к переполнению переменных типа double
+if (MatrixSize > 300 || MatrixSize < 0) {
+	throw MatrixInputException();
+}
