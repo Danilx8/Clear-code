@@ -1,0 +1,398 @@
+1. //сделал инициализацию переменной выразительнее, переместив её ближе к коду, где она используется
+dataArray = []
+//много кода
+
+try {
+	const response = await fetch('.\\assets\\songs.json');
+	const data = await response.json();
+	dataArray = data;
+}
+catch (error) {
+	console.error(error);
+}
+
+->
+
+//много кода
+
+dataArray = []
+try {
+	const response = await fetch('.\\assets\\songs.json');
+	const data = await response.json();
+	dataArray = data;
+}
+catch (error) {
+	console.error(error);
+}
+
+2. 
+//добавил финализацию
+var songsArray = []
+...
+for (let songIndex = 0; songIndex < songsAmount; ++songIndex) {
+    const {title, artist, url, meta} = dataArray.songs[songIndex]
+    let songObject
+    if (meta !== undefined) {
+        songObject = songsPool.getObject(title, artist, url, meta)
+    } else {
+        songObject = songsPool.getObject(title, artist, url)
+    }
+    songsArray.push(songObject)
+}
+...
+for (let songIndex = 0; songIndex < songsArray.length; ++songIndex) {
+    playlist[songIndex] = songsArray[songIndex]
+}
+
+songsArray = None
+
+3. //добавил инвариант, заменив голый механизм отлавливания исключений на вывод более выразительной информации
+function getTextFromFile(filepath) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', filepath, false);
+    xhr.send();
+  
+    if (xhr.status === 200) {
+      return xhr.responseText;
+    } else {
+      throw new Error('Error loading file');
+    }
+}
+
+->
+
+function getTextFromFile(filepath) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', filepath, false);
+    xhr.send();
+  
+    if (xhr.status === 200) {
+      return xhr.responseText;
+    } else if (xhr.status === 404) {
+      throw new Error('No text files were found');
+    } else if (xhr.status === 500) {
+      throw new Error('Internal server error');
+    }
+}
+
+4. //при указании пути к папке используется булева переменная Success, инициированяя как false, индицирующая успех или неудачу. Этот файл маловероятно будет расширяться и использоваться дальше, но для профилактики имеет смысл "обнулить" эту переменную после её использования в первой проверке
+
+	    bool Success = false;
+            while (Success == false)
+            {
+                UserPath = Console.ReadLine();
+                if (Directory.Exists(UserPath) && UserPath != string.Empty)
+                {
+                    Success = true;
+                }
+                else
+                {
+                    Console.WriteLine("Неверный формат пути, попробуйте снова");
+            \    }
+            }
+
+	    Success = false;
+
+5. //вместо использования двух переменных одного назначения Success и Error есть смысл финализировать одну переменную Success и реиспользовать её в коде дальше
+while (UserChoice < 1 || UserChoice > 2)
+            {
+                bool Success = (int.TryParse(Convert.ToString(Console.ReadLine()),
+                    out UserChoice));
+                if (Success == false)
+                {
+                    Console.WriteLine("Данные введены неверно");
+                }
+            }
+...
+
+bool Error = false;
+
+...
+
+catch (Exception ex)
+            {
+                Console.WriteLine("Что-то пошло не так\n" + ex);
+                Error = true;
+            }
+finally
+            {
+                if (!Error)
+                {
+                    Console.WriteLine("Изменения совершены успешно");
+                }
+                Console.ReadKey();
+            }
+
+
+->
+
+bool Success = false;
+while (UserChoice < 1 || UserChoice > 2)
+            {
+                Success = (int.TryParse(Convert.ToString(Console.ReadLine()),
+                    out UserChoice));
+                if (Success == false)
+                {
+                    Console.WriteLine("Данные введены неверно");
+                }
+            }
+Success = false;
+
+...
+
+catch (Exception ex)
+            {
+                Console.WriteLine("Что-то пошло не так\n" + ex);
+                Error = true;
+            }
+
+finally
+            {
+                if (!Success)
+                {
+                    Console.WriteLine("Изменения совершены успешно");
+                }
+                Console.ReadKey();
+            }
+
+6. //в калькулятор матриц лучше добавить валидацию существования матриц(ы) в начало, а не конец вычислений
+Console.WriteLine("1. Операции над двумя матрицами");
+Console.WriteLine("2. Операции над первой матрицей");
+Console.WriteLine("3. Операции над второй матрицей");
+int Option = 0;
+while (Option < 1 || Option > 3)
+{
+	Option = InputHandler();
+}
+string Operation = " ";
+int Component;
+switch (Option)
+            {
+                case 1:
+                    Console.Clear();
+                    if (DemonstrateMatrices())
+...
+
+Console.WriteLine("1. Операции над двумя матрицами");
+Console.WriteLine("2. Операции над первой матрицей");
+Console.WriteLine("3. Операции над второй матрицей");
+int Option = 0;
+if (!DemonstrateMatrices()) {
+	throw new Error("Не все матрицы проинициализированы");
+while (Option < 1 || Option > 3)
+{
+	Option = InputHandler();
+}
+string Operation = " ";
+int Component;
+switch (Option)
+            {
+                case 1:
+                    Console.Clear();
+                    if (DemonstrateMatrices())
+...
+
+7. //инициализацию динамически изменяемых переменных лучше переместить из начала кода ближе к месту их использования
+bool isGameover = false;
+int GAMESPEED = 1000;
+int level = 0;
+string username;
+int userscore = 0;
+int highestScore = 0;
+int blockType;
+
+//куча кода
+
+->
+
+string username;
+int main() {
+  setFigureIntitalPosition();
+  colorize(REGULAR_TEXT_COLOR);
+  cout << "Enter your name: ";
+  cin >> username;
+  menu();
+  return 0;
+}
+
+...
+
+int highestScore = 0;
+...
+cout << "Your score: " << userscore << endl << "Current level: " << level;
+cout << "\n\nHighest score: " << highestScore;
+
+итд
+
+8. //есть гипотеза, что глобальные переменные токенов в ботах также стоит инициировать ближе к месту их использования
+openai.api_key = CHAT_TOKEN
+...
+async def speak_to_ai(message: types.message, state: FSMContext):
+
+->
+
+openai.api_key = CHAT_TOKEN
+async def speak_to_ai(message: types.message, state: FSMContext):
+
+9. //в моей змейке нельзя начать игру заново: это раздражает. для поддержания этого функционала на будущее надо добавить обнуление набранных баллов игрока после поражения
+...
+      for (int bodyPartIndex = snakeSize - 1; bodyPartIndex > 0; --bodyPartIndex) {
+        if (position[0].rowIndex == position[bodyPartIndex].rowIndex &&
+            position[0].columnIndex == position[bodyPartIndex].columnIndex) {
+          throw "dead";
+        }
+      }
+...
+
+->
+
+...
+      for (int bodyPartIndex = snakeSize - 1; bodyPartIndex > 0; --bodyPartIndex) {
+        if (position[0].rowIndex == position[bodyPartIndex].rowIndex &&
+            position[0].columnIndex == position[bodyPartIndex].columnIndex) {
+          score = 0;
+	  throw "dead";
+        }
+      }
+...
+
+10. //перемещаю инициализацию переменнной ближе к её непосредственному использованию
+      int numberIndex;
+      int length = myDigitsNumber;
+      string readyString;
+
+      if (isNegative()) {
+        readyString = '-';
+      }
+
+      for (numberIndex = length - 1; numberIndex >= 0; --numberIndex) {
+        readyString += char('0' + getDigit(numberIndex));
+      }
+
+
+->
+
+      int numberIndex;
+      string readyString;
+
+      if (isNegative()) {
+        readyString = '-';
+      }
+
+      int length = myDigitsNumber;
+      for (numberIndex = length - 1; numberIndex >= 0; --numberIndex) {
+        readyString += char('0' + getDigit(numberIndex));
+      }
+
+11. //внёс переменную-индексатор в заголовок цикла
+int numberIndex;
+
+...
+
+for (numberIndex = inputString.size() - 1; numberIndex >= limit; --numberIndex) {
+	addDigit(inputString[numberIndex] - '0');
+}
+
+->
+for (int numberIndex = inputString.size() - 1; numberIndex >= limit; --numberIndex) {
+        addDigit(inputString[numberIndex] - '0');
+}
+
+12. //поменял неявную типизацию переменной на явную
+auto start = chrono::steady_clock::now();
+
+->
+
+time_t start = chrono::steady_clock::now();
+
+13. //упростил и локализировал использование переменной
+char character;
+
+...
+
+character = singlesFile.get();
+while (character != EOF) {
+  character = toupper(character);
+  ++singleLetterFrequency[character];
+  character = singlesFile.get();
+}
+
+->
+
+char character;
+while (character != EOF) {
+  character = toupper(character);
+  ++singleLetterFrequency[character];
+  character = singlesFile.get();
+}
+
+14. //удалил неиспользуемую переменную
+int arabicEquivalentToRomanNumeral(string number) {
+  int readyReturn;
+  int equivalentIndex;
+
+  if (number != "M") {
+    for (int numeralIndex = 0; numeralIndex < 10; ++numeralIndex) {
+      if (number == romanOneToTenNumbers[numeralIndex]) {
+        readyReturn = numeralIndex;
+        return readyReturn;
+      }
+      if (number == romanTenToNintyNumbers[numeralIndex]) {
+        readyReturn = numeralIndex*10;
+        return readyReturn;
+      }
+      if (number == romanOneToNineHundertNumbers[numeralIndex]) {
+        readyReturn = numeralIndex*100;
+        return readyReturn;
+      }
+    }
+...
+
+->
+
+int arabicEquivalentToRomanNumeral(string number) {
+  int readyReturn;
+  
+  if (number != "M") {
+    for (int numeralIndex = 0; numeralIndex < 10; ++numeralIndex) {
+      if (number == romanOneToTenNumbers[numeralIndex]) {
+        readyReturn = numeralIndex;
+        return readyReturn;
+      }
+      if (number == romanTenToNintyNumbers[numeralIndex]) {
+        readyReturn = numeralIndex*10;
+        return readyReturn;
+      }
+      if (number == romanOneToNineHundertNumbers[numeralIndex]) {
+        readyReturn = numeralIndex*100;
+        return readyReturn;
+      }
+    }
+
+...
+
+15. //в завершение работы калькулятора в текущих реалиях нет смысла обнулять переменную, отслеживающую индекс блока, но при дальнейшем расширении приложения с возможностью, например, перезаписи одного и того же календаря на тех же индексах, финализация этой переменной - маст-хэв.
+...
+  for (int blockIndex = 0; blockIndex < 4; ++blockIndex) {
+    std::cout << std::endl << std::endl << blocks[blockIndex].months << std::endl <<
+              blocks[blockIndex].weekLine << std::endl;
+    for (int line = 0; line < blocks[blockIndex].amountOfWeeks; ++line) {
+      std::cout << blocks[blockIndex].days[line] << std::endl;
+    }
+  }
+  system("pause");
+  return 0;
+
+->
+
+...
+  for (int blockIndex = 0; blockIndex < 4; ++blockIndex) {
+    std::cout << std::endl << std::endl << blocks[blockIndex].months << std::endl <<
+              blocks[blockIndex].weekLine << std::endl;
+    for (int line = 0; line < blocks[blockIndex].amountOfWeeks; ++line) {
+      std::cout << blocks[blockIndex].days[line] << std::endl;
+    }
+  }
+  blockIndex = 0;
+  system("pause");
+  return 0;
