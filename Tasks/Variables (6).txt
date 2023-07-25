@@ -1,0 +1,199 @@
+1.// Выделил класс leaderboard с указанными методами и перместил переменную из глобальной зоны видимости в приватное поле нового класса (в изначальном коде на C++ классов не было вовсе, код был написан функционально)
+class leaderboard {
+  private:
+    const int PLAYERS_AMOUNT = 5;
+
+  public:
+    <методы>
+
+
+2.//переместил переменную, используемую всего в одной функции в эту функцию
+bool makeBlocks() {
+vector<vector<vector<int>>> blockList =
+
+...
+
+}
+
+3.//поместил две матрицы, с которыми работает калькулятор внутрь функции main
+static void Main(string[] args)
+        {
+	static SquareMatrix FirstMatrix;
+        static SquareMatrix SecondMatrix;
+        static SquareMatrix ResultMatrix;
+...
+
+4.//поместил переменную для считывания размера матриц внутрь цикла, потому что работа с этой переменной вне него не происходит
+Console.Clear();
+Console.Write("Введите размерность своих матриц: ");
+int MatricesSize = 0;
+while (MatricesSize <= 0)
+{
+	MatricesSize = InputHandler();
+}
+GenerateFirstMatrix(MatricesSize);
+GenerateSecondMatrix(MatricesSize);
+
+5.//переместил в модели объявления переменных ближе к их инициализации
+string[] addedFiles = Array.Empty<string>();
+if (addedFilesCollection != null)
+{
+	addedFiles = (addedFilesCollection.ToArray());
+}
+
+string[] deletedFiles = Array.Empty<string>();
+if (deletedFilesCollection != null)
+{
+	deletedFiles = (deletedFilesCollection.ToArray());
+}
+
+...
+
+6.//проделал ту же операцию для формирования сообщения на вьюшке
+string[] ModifiedFiles;
+if (Result.ContainsKey((int)StateCodes.UPDATED_FILES))
+{
+	ModifiedFiles = Result[(int)StateCodes.UPDATED_FILES];
+	Message += "\nModified files: ";
+	foreach (string file in ModifiedFiles)
+	{
+		Message += Path.GetFileName(file) + ", ";
+	}
+}
+
+string[] DeletedFiles;
+if (Result.ContainsKey((int)StateCodes.DELETED_FILES))
+                {
+
+                    DeletedFiles = Result[(int)StateCodes.DELETED_FILES];
+                    Message += "\nDeleted files: ";
+                    foreach (string file in DeletedFiles)
+                    {
+                        Message += Path.GetFileName(file) + ", ";
+                    }
+                }
+
+...
+
+7.//переместил объявления делегатов ближе к их инициализации
+delegate List<int> InOrderTraversal(BinaryTree<int> Tree);
+InOrderTraversal ListerLambda = ...
+
+delegate void AscendingBinaryTree(BinaryTree<int> Tree);
+AscendingBinaryTree AscendingList = ...
+
+8.//переместил два публичных поля в приват и создал геттеры и сеттеры для более защищённого доступа к данным объектов выбранного класса
+private Dictionary<string, string> Content { get; set; }
+private List<string> FileName { get; set; }
+
+9.//поместил объявление переменной в цикл
+//Color Color;
+
+...
+
+for (int YCoordinate = 0; YCoordinate < Bitmap.Height; YCoordinate++)
+            {
+                for (int XCoordinate = 0; XCoordinate < Bitmap.Width; XCoordinate++)
+                {
+                    Color Color = Bitmap.GetPixel(XCoordinate, YCoordinate);
+...
+
+
+10.//поместил переменную, используемую только в цикле, внутрь
+//int weekIndex;
+
+for (int monthIndex = 1; monthIndex < 13; ++monthIndex) {
+    int weekIndex = 0;
+
+...
+
+11.//переместил ввод значения в переменную year ближе к её использованию
+int year;
+std::cout << "Enter the year: ";
+std::cin >> year;
+
+...
+
+for (int monthIndex = 1; monthIndex < 13; ++monthIndex) {
+    weekIndex = 0;
+
+    int numberInWeek = 0;
+    int spacesBeforeFirstDayMultiplier = firstDayOfMonth(year, monthIndex);
+
+
+->
+
+int year;
+std::cout << "Enter the year: ";
+std::cin >> year;
+
+for (int monthIndex = 1; monthIndex < 13; ++monthIndex) {
+    weekIndex = 0;
+
+    int numberInWeek = 0;
+    int spacesBeforeFirstDayMultiplier = firstDayOfMonth(year, monthIndex);
+
+
+12.//переместил выбор опции ближе к switch-case оператору
+bool choice;
+
+cout << "Choose the transition task: Arabic to Roman - push 1, Roman to Arabic - push 0:  ";
+cin >> choice;
+
+...
+
+switch (choice) {
+...
+}
+
+->
+
+bool choice;
+
+cout << "Choose the transition task: Arabic to Roman - push 1, Roman to Arabic - push 0:  ";
+cin >> choice;
+
+switch (choice) {
+...
+}
+
+13.//переместил все переменные, объявленные до switch-statement, и в теле case выделил отдельное поле видимости с помощью фигурных скобок
+  switch (choice) {
+    case true:
+    {
+      int arabicNumber;
+      cout << "Enter an Arabic number: ";
+      cin >> arabicNumber;
+
+      int digitIndex;
+
+      итп...
+    }
+
+
+14.//совместил объявление и иницализацию переменной, потому что в данном коде нет смысла разделять эти операции
+char character;
+
+...
+
+character = singlesFile.get();
+
+->
+
+char character = singlesFile.get();
+
+15.//переместил переменную-внешний while-счётчик ближе к циклу
+int productDigit = 0;
+...
+while (divisorTracker.lessThan(leftmostCollectedDividend)) {
+  divisorTracker += divisor;
+  ++productDigit;
+}
+
+->
+
+int productDigit = 0;
+while (divisorTracker.lessThan(leftmostCollectedDividend)) {
+  divisorTracker += divisor;
+  ++productDigit;
+}
