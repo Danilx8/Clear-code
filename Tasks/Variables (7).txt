@@ -1,0 +1,58 @@
+1.//при создании тетриса и змейки я использовал стандартную библиотеку для виндовс, с помощью которой я окрашивал текст и символы в определённые цвета. Чтобы не хардкодить коды цветов в каждом месте, где я использую раскрашивание, я инициализировал константы, связывающиеся при запуске игр, с названиями, отображающими участки их применения. выглядело это следующим образом:
+const int SNAKE_HEAD_AND_LOGO_COLOR = 2;
+const int FAILURE_COLOR = 4;
+const int FOOD_COLOR = 6;
+const int SNAKE_AND_TEXT_COLOR = 10;
+const int FRIENDLY_TEXT_COLOR = 14;
+const int WALLS_COLOR = 15;
+const int USER_NAME_COLOR = 47;
+
+//сейчас я понимаю, что некоторые названия, как например, переменной, обозначающей код 14, некорректны, впрочем, как и сама идея именовать переменную, храняющую код цвета в честь задачи, в которой она используется, но тогда это была вполне логичная реализация.
+
+2.//примером смешанного времени загрузки является мой телеграмм-бот, реализующий взаимодействие с гугл-таблицами. с одной стороны, данные о токене бота загружаются вместе со сборкой проекта, а с другой - информация о используемой таблице подгружается в момент вызова соответствующей команды. в текущей реализации всё привязано к одной таблице, и это можно было бы изменить, передвинув время на сборку проекта, но при расширении функционала для кастомизации рабочей таблицы, от такого подхода не уйти.
+
+//связывание переменной при сборке
+from Token import TOKEN
+
+//связывание переменных в рантайме
+@dp.message_handler(state=ScheduleState.subject_input)
+async def enter_subject(message: types.Message, state: FSMContext):
+    try:
+        await state.update_data({'column': add_subject(message.text)})
+
+
+3.//в приложении-калькуляторе матриц при сборке нет готовых матриц: они создаются в отдельном меню, поэтому здесь связывание переменной размера матрицы со значением происходит прямо в рантайме, что выглядит вполне логично.
+
+//Executable.cs
+case (int)Choices.GENERATE_MATRICES:
+                        Console.Clear();
+                        Console.Write("Введите размерность своих матриц: ");
+                        while (MatricesSize <= 0)
+                        {
+                            MatricesSize = InputHandler();
+                        }
+...
+
+//Square Matrix Class.cs
+try
+            {
+                if (InputMatrixSize <= 0)
+                {
+                    throw new InvalidMatrixException("Размер не может быть меньше единицы!");
+                }
+                MatrixSize = InputMatrixSize;
+                Random Rand = new Random(Guid.NewGuid().GetHashCode());
+                UserMatrix = new double[MatrixSize, MatrixSize];
+                for (int RowIndex = 0; RowIndex < MatrixSize; ++RowIndex)
+                {
+                    for (int ColumnIndex = 0; ColumnIndex < MatrixSize; ++ColumnIndex)
+                    {
+                        UserMatrix[RowIndex, ColumnIndex] = Convert.ToDouble(Rand.Next(-100, 100));
+                    }
+                }
+            }
+            catch (InvalidMatrixException err)
+            {
+                Console.WriteLine(err.Message);
+                Console.ReadKey();
+            }
