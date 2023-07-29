@@ -1,0 +1,98 @@
+1.//В случае алгоритмов замена массивов на другие типы данных становится или вынужденной мерой, или чрезмерной ввиду (как правило) заранее известной формы входных данных. Тем не менее, в примере ниже этот подход сработал, исключив необходимость дополнительной сортировки, оптимизировав этим выполнение программы
+
+PriorityQueue<Integer> folders = new PriorityQueue<>(amount);
+int time = 0;
+
+for (int i = 0; i < amount; ++i) {
+	folders.add(in.nextInt());
+}
+
+for (int i = 0; i < amount - 1; ++i) {
+	int diplomaAmount = folders.poll();
+	time += diplomaAmount;
+}
+
+2.//В своём мини музыкальном плеере я не использовал базы данных, поэтому использование массивов для хранения информации о треках воспринималось для меня как адекватное решение. Однако сейчас я считаю, что логичнее было бы использовать для этой задачи очередь и подгружать песни по мере их востребования. Очередь же с текущим плейлистом я бы подгружал отдельно, при его выборе пользователем в качестве активного (в js нет очереди "из коробки", поэтому описание представляю исключительно словесное)
+
+3.//в своей реализации класса BigInt на C++ я использовал массив чаров для хранения вводимой последовательности цифр, однако поскольку все вычисления так или иначе работают с концом последовательности, логичнее и безопаснее было бы хранить эту информацию в виде стэка(LIFO):
+vector<char> myDigits;
+...
+string toString() const {
+      int numberIndex;
+      int length = myDigitsNumber;
+      string readyString;
+
+      if (isNegative()) {
+        readyString = '-';
+      }
+
+      for (numberIndex = length - 1; numberIndex >= 0; --numberIndex) {
+        readyString += char('0' + getDigit(numberIndex));
+      }
+
+      return readyString;
+    }
+}
+
+-> 
+
+stack<char> myDigits;
+...
+string toString() const {
+      int numberIndex;
+      int length = myDigitsNumber;
+      string readyString;
+      stack<char> workedOnDigits = myDigits; //обязательно необходимо делать копию стэка, чтобы не терять информацию для переиспользования переменных класса BigInt
+
+      if (isNegative()) {
+        readyString = '-';
+      }
+
+      for (numberIndex = length - 1; numberIndex >= 0; --numberIndex) {
+        readyString += char('0' + workedOnDigits.pop());
+      }
+
+      return readyString;
+    }
+}
+
+4.//В моём приложении для подсчёта символов в текстовом документе я использовал массив размером 128 элементов для соответствия символьным кодам UTF-8. В случае, когда мне попадался символ, входивший в кодировку, я увеличивал соответствую ячейку на один. Это отличный подход для кодов, встраиваемых в манипуляторы или небольшие приборы, но в промышленной разработке на Java или C# я бы использовал инструменты языка, считывая символы в любой кодировке, в соответствии с параметрами системы пользователя, и хранил бы повторения символов в ассоциативном массиве.
+int singleLetterFrequency[128];
+...
+character = singlesFile.get();
+while (character != EOF) {
+  character = toupper(character);
+  ++singleLetterFrequency[character];
+  character = singlesFile.get();
+}
+
+->
+
+dictionary<char, int> singleLetterFrequency();
+...
+character = singlesFile.get();
+while (character != EOF) {
+  character = toupper(character);
+  ++singleLetterFrequency[character];
+  character = singlesFile.get();
+}
+
+5.//Ещё менее оптимальная ситуация, чем в предыдущем примере, представлена в моём приложении для перевода римских чисел в арабские. Вместо того, чтобы использовать массив строковых значений с римскими литералами и итерировать по их арабским индексам, соответствующим их значениям, следовало бы создать ассоциативный массив, в котором хранились бы соответствующие значения для соответствующих значений тех или иных атомарных частей (десятки, сотни, тысячи итп)
+const string romanOneToTenNumbers[10] = {
+  "", "I", "II", "III", "IV", "V",
+  "VI", "VII", "VIII", "IX"
+},
+romanTenToNintyNumbers[10] = {
+  "", "X", "XX", "XXX", "XL", "L",
+  "LX", "LXX", "LXXX", "XC"
+},
+romanOneToNineHundertNumbers[10] = {
+  "", "C", "CC", "CCC", "CD", "D",
+  "DC", "DCC", "DCCC", "CM"
+};
+
+->
+
+dictionary<string> romanNumbers;
+romanNumbers[1] = "I";
+...
