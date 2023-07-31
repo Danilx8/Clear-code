@@ -1,0 +1,163 @@
+3.1
+//Проверить, нажата ли кнопка "перемешать"
+if (shuffleButton.classList.contains('static')) {
+...
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+//Проверить, нужно ли включать клип на фоне при переключении песни
+if (!paused && playlist[currentSongIndex].video != undefined) {
+...
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+switch(event.key) {
+	//При нажатии на пробел
+        case ' ':
+		...
+
+--------------------------------------------------------------------------------------------------------------------------
+
+//Проверить, есть ли на устройстве пользователя режим прослушивания на фоне
+if ('mediaSession' in navigator) {
+...
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+//Проверить, объявлен ли пул объектов и не превышена ли его ёмкость
+if (this.maxSize === undefined || this.pool.length < this.maxSize) {
+          return this.objectFactory(...args);
+
+...
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+//Проверить, не находится ли текущая ячейка на краях поля
+if (position.rowIndex == 0 || position.columnIndex == 0 ||
+          position.rowIndex == currentField.getHeight() - 1 ||
+          position.columnIndex == currentField.getWidth() - 1) {
+
+...
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+//Перед тем, как обновить таблицу лидеров, файл с ней считывается в соответствующий массив
+for (int playerIndex = 0; playerIndex < PLAYERS_AMOUNT; ++playerIndex) {
+  file >> players[playerIndex].place;
+  file >> players[playerIndex].name;
+  file >> players[playerIndex].score;
+}
+
+
+3.2
+//проверка на то, последняя ли песня в плейлисте
+if (currentSongIndex === songsAmount - 1) {
+	done = true
+}
+
+->
+
+bool isLast(int songIndex) {
+	return (if songIndex === songsAmount - 1)
+}
+
+if (isLast(currentSongIndex)) {
+	done = true
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+
+const tracklist = document.getElementById('tracklist')
+const mobileTracklist = document.getElementById('mobile-tracklist')
+
+...
+
+let tracklistSongs = ''
+
+for (let songIndex = 0; songIndex < Object.keys(dataArray.songs).length; ++songIndex) { // добавление песен в альбом песен
+
+...
+
+}
+
+tracklist.innerHTML = tracklistSongs
+mobileTracklist.innerHTML = tracklistSongs
+
+->
+
+const tracklist = document.getElementById('tracklist')
+const mobileTracklist = document.getElementById('mobile-tracklist')
+
+...
+
+let songsHtmlView= ''
+
+for (let songIndex = 0; songIndex < playlist.length; ++songIndex) {
+...
+
+}
+
+tracklist.innerHTML = songsHtmlView
+mobileTracklist.innerHTML = songsHtmlView
+
+--------------------------------------------------------------------------------------------------------------------------
+
+window.addEventListener('keydown', function (event) { // управление плейлистом кнопками
+...
+})
+
+->
+
+function keyboardControllerHandler(event) {
+...
+}
+
+window.addEventListener('keydown', function (event) { 
+...
+})
+
+--------------------------------------------------------------------------------------------------------------------------
+
+document.querySelectorAll("button").forEach( function(item) { //снятие выделения с кнопок
+    item.addEventListener('focus', function() {
+        this.blur();
+    })
+})
+
+->
+
+function untrackButton(item) {
+...
+}
+
+document.querySelectorAll("button").forEach(button => untrackButton(button)
+
+--------------------------------------------------------------------------------------------------------------------------
+
+private static SquareMatrix MatrixDecompose(SquareMatrix CurrentMatrix, out int[] PermutationArray,
+            out int Toggle)
+        {
+	// L - ?; U - ?; Permutation array - ?
+	SquareMatrix Result = CurrentMatrix.Clone() as SquareMatrix;
+
+...
+
+}
+
+->
+
+private static SquareMatrix MatrixDecompose(SquareMatrix CurrentMatrix, out int[] PermutationArray,
+            out int Toggle)
+        {
+	SquareMatrix LowerAndHigherTriangleMatricesCombination = CurrentMatrix.Clone() as SquareMatrix;
+
+...
+
+}
