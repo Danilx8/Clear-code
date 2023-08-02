@@ -1,0 +1,68 @@
+1. //TODO - задать реальные вычисления, суммирующие стоимость товара и доставки (6)
+public Float CalculateTotalCost() {
+
+2. //TODO - написать логику, основанную на расстоянии между рестораном и клиентом (6)
+public Integer CalculateDeliveryTime() {
+
+3. //Из контекста извлекается имя авторизованного пользователя (5)
+String user = SecurityContextHolder.getContext().getAuthentication().getName();
+
+4. //Лямбда-функция для создания в рантайме массива названий товаров из массива товаров (5)
+return purchases.stream().map(purchase -> purchase.getItemName()).toList();
+
+5. //Добавление заготовки покупки в бд (1)
+repository.save(BuildPurchaseEntity(product, Address.NONE, PurchaseState.VACANT, 1, product.getAddress()));
+
+6. //Формат возвращаемого массива при совпадении папок: {0: "Все файлы синхронизированы!},
+   //В ином случае: {1: ADDED FILES, 2: DELETED FILES, 3: UPDATED FILES} (3)
+public Dictionary<int, string[]> CheckStates()
+
+7. //Сравнение двух файлов на равенство с полным чтением обоих файлов 
+   //Осторожно использовать на тяжёлых файлах
+   //TODO - переделать алгоритм на побитовое сравнение (4, 6)
+if (!Enumerable.SequenceEqual(File.ReadAllBytes(FilePath), File.ReadAllBytes(SecondaryPath)))
+
+8. //Возвращает элемент, следующий за локальным тупиком в бинарном дереве(1)
+private BinaryTree<T> DeadEndNext(BinaryTree<T> CurrentElement, BinaryTree<T> RightNeighbour)
+
+9. //Метод принимает на вход матрицу, метод для её декомпозиции, массив перестановок и флаг
+   //смены знака. Возвращает на выходе произведение верхне и нижнетреугольной матрицы.(1)
+private SquareMatrix MatrixEventHandle(SquareMatrix Matrix,
+  MyDelegate<SquareMatrix, int[], int, SquareMatrix> MyMethod, out int[] PermutationArray, out int Toggle)
+
+10. //TODO - исправить if-else джунгли в этом участке кода (6)
+ if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                SquareMatrix AnotherMatrix = ((SquareMatrix)obj).Clone() as SquareMatrix;
+                if (this.GetSize() == AnotherMatrix.GetSize())
+                {
+                    int Length = this.GetSize();
+                    for (int RowIndex = 0; RowIndex < Length; ++RowIndex)
+                    {
+                        for (int ColumnIndex = 0; ColumnIndex < Length; ++ColumnIndex)
+                        {
+                            if (this[RowIndex, ColumnIndex] != AnotherMatrix[RowIndex, ColumnIndex])
+                                return false;
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                return true;
+            }
+
+11. //Регулярное выражение для номера телефона (1)
+void IStringBuilder.CreateMask()
+        {
+            Dictionary.SetMask("\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}");
+        }
+
+12. //TODO - заменить название SolutionVector на более выразительное для цели хранения временных значений для ResultVector
+double[] SolutionVector = new double[Length];
+            ResultVector.CopyTo(SolutionVector, 0);
