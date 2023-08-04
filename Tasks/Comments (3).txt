@@ -1,0 +1,130 @@
+1. //Можно просто удалить комментарий
+//if (Left != null)
+            //{
+            //    return Left;
+            //} else if (Right != null)
+            //{
+            //    return Right;
+            //}
+            //else
+            //{
+            //    BinaryTree<T> CurrentElement = this;
+            //    BinaryTree<T> RightNeighbour = Parent.Right;
+            //    return DeadEndNext(CurrentElement, RightNeighbour);
+            //}
+
+            if (Left != null) return Left;
+
+            if (Right != null) return Right;
+
+            BinaryTree<T> CurrentElement = this;
+            BinaryTree<T> RightNeighbour = Parent.Right;
+            return DeadEndNext(CurrentElement, RightNeighbour);
+
+2. //Вместо постановки задачи, решаемой помеченным методом, лучше разбить его на атомарные и решать подзадачи. Такой способ позволит избавиться от комментариев благодаря правильному именованию переменных
+
+// L - ?; U - ?; Permutation array - ?
+private static SquareMatrix MatrixDecompose(SquareMatrix CurrentMatrix, out int[] PermutationArray,
+            out int Toggle)
+
+3. //То же применимо и здесь. Такой комментарий добавляет мало информативности коду, скорее объясняя мои намерения, чем то, что реально выполняется. Лучше изменить структуру программы
+
+//LU * x = b; x - ?
+private static double[] MatrixSolver(SquareMatrix luMatrix, double[] ResultVector)
+
+4. //Здесь закомментированный код не показывает заменённый код, а скорее заглушки, которые планировалось заполнить реальным кодом. Однако этот код тоже лучше или удалить, или, по крайней мере, раскомментировать
+
+//  @Operation(summary = "api.admin.create.operation.summary")
+//  @ApiResponses(value = {
+//          @ApiResponse(responseCode = "200", description = "api.admin.create.api-responses.200.description"),
+//          @ApiResponse(responseCode = "500", description = "api.cookbook.server.error", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorControllerAdvice.ErrorResponse.class))})
+//  })
+//  @PostMapping("newproduct")
+//  public ResponseEntity<ProductDto> add(@RequestBody @Valid ProductDto product) {
+//    return ResponseEntity.ok(this.usersService.create(product));
+//  }
+
+//  @Operation(summary = "api.admin.create.operation.summary")
+//  @ApiResponses(value = {
+//          @ApiResponse(responseCode = "200", description = "api.admin.create.api-responses.200.description"),
+//          @ApiResponse(responseCode = "500", description = "api.cookbook.server.error", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorControllerAdvice.ErrorResponse.class))})
+//  })
+//  @DeleteMapping("deleteproduct")
+//  public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductDto product) {
+//    return ResponseEntity.ok(this.usersService.create(product));
+//  }
+
+5. //Из-за того, что конкретно в этом проекте использовался сваггер, необходимость использования подобных комментариев сводится к нулю
+
+@Operation(summary = "api.admin.delete.operation.summary")
+@ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "api.admin.delete.api-responses.200.description"),
+          @ApiResponse(responseCode = "404", description = "api.admin.delete.api-responses.404.description", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorControllerAdvice.ErrorResponse.class))}),
+          @ApiResponse(responseCode = "500", description = "api.cookbook.server.error", content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorControllerAdvice.ErrorResponse.class))})
+  }) // Регистрация пользователя
+
+  @GetMapping("success")
+  public ResponseEntity<AuthStatus> success() {
+    return ResponseEntity.ok(new AuthStatus("OK"));
+  }
+
+6. //Здесь комментарий совершенно лишний, потому что название эндпоинта и так раскрывает его функционал, поэтому дополнительные разъяснения только загромождают пространство
+
+public ResponseEntity<Float> TotalCost() { //итоговая цена
+
+7. //Здесь этот комментарий, во-первых, вводит в заблуждение, якобы контроллер пользователей может быть общедоступен, а во-вторых, лишний, ведь даже если возникнет необходимость в том, чтобы вернуть этот атрибут, можно будет обратиться к системе контроля версий
+
+//@CrossOrigin(origins = "*")
+public class UserController {
+
+8. //Этот комментарий был автоматически сгенерирован IDE, когда я сгенерировал отнаследованные методы автоматически. Этот текст может быть непонятен для разработчиков в русскоязычной команде, которой мы и разрабатывали проект, и заставляет думать, что им отмечено что-то важное, когда на деле, несмотря на то, что написано в комментарии, это не заглушка - это уже готовый метод, не требующий никаких модификаций
+
+@Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString();
+    }
+
+9. //Лишний комментарий. Эту строчку можно и нужно удалить, потому что то, что здесь прописано, и так совершается под капотом
+// if (roles == null) return Collections.<String>emptySet();
+
+10. //Лишний комментарий: название метода всё и так раскрывает
+    @GetMapping("cart/time")
+    public ResponseEntity<Integer> Time() { //получение времени доставки
+
+11. //та же ситуация
+@PostMapping("cart")
+    public ResponseEntity<Void> PutInCart(@RequestBody @Valid ProductDto product) {  //добавление товара в корзину
+        service.AddToCart(product);
+        return ResponseEntity.ok().build();
+    }
+
+12. //Несмотря на то, что в комментарии помечена доп. информация о методе, неочевидная с первого взгляда, лучше пометить это в названии
+    public ResponseEntity<Void> AddPurchase(@RequestBody String productId) { //увеличение количества товара в корзине на 1
+        service.AddPurchase(productId);
+        return ResponseEntity.ok().build();
+    }
+
+13. //Также отчасти полезный комментарий, но всё же захламляющий код, и лучшим решением было бы описать этот механизм в названии
+    public ResponseEntity<Void> RemovePurchase(@RequestBody String productId) { //уменьшение количества товара в корзине на 1
+        service.RemovePurchase(productId);
+        return ResponseEntity.ok().build();
+    }
+
+14. //Неинформативный комментарий. Задумка была закомментировать этот участок кода, чтобы потом написать здесь вместо обычного исключения, самопальное, но это не было реализовано. Лучше было бы написать TODO-комментарий
+if (foundProduct == null) {
+	// throw new RuntimeException("Продукт не найден");
+}
+
+15. //Из-за того, что работа над проектом велась коллективно, иногда сложно отследить логику появления некоторых строк кода в проекте. Комментарий ниже - пример этому. Этот участок кода лучше удалить
+//    @Operation(summary = "api.product.products.summary")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "api.product.products.api-responses.200.description"),
+//            @ApiResponse(responseCode = "500", description = "api.server.error",
+//                    content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorControllerAdvice.ErrorResponse.class))})
+//    })
+//    @PostMapping("addproduct")
+//    public ResponseEntity<List<ProductDto>> addProduct(@RequestBody @Valid ProductDto product) { //все товары в каталоге
+//
+//
+//    }
